@@ -1,16 +1,18 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import { connectDB } from './config/db.js';
-//import userRoutes from "./routes/userRoutes.js";
+import userRoutes from './routes/userRoutes.js';
 
-dotenv.config({ path: '.env.local' });
+dotenv.config({
+  path: process.env.NODE_ENV === 'production' ? '.env' : '.env.local',
+});
 
 const app = express();
 app.use(express.json());
 
 connectDB();
 
-//app.use("/api/users", userRoutes);
+app.use('/api/users', userRoutes);
 
 app.get('/', (req, res) => {
   res.send('SKFSD Backend is running');
