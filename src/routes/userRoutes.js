@@ -137,7 +137,7 @@ router.delete('/:id', protect, authorize('admin'), async (req, res) => {
       return res.status(404).json({ message: 'User not found.' });
     }
 
-    await user.deleteOne(); // Mongoose v6+ uses deleteOne() on the document
+    await user.deleteOne();
 
     res.status(200).json({ message: 'User deleted successfully.' });
   } catch (error) {
